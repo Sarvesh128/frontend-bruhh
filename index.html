@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday, Anwuu Babyy</title>
+
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display, Great Vibes, Lora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ===================================================================
+       SVG SYMBOLS & FLORAL OVERLAYS (Reusable throughout the page)
+       =================================================================== -->
+  <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+    <!-- White Calla Lily & Floral Sprig -->
+    <symbol id="floral-corner" viewBox="0 0 240 240">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Delicate stem & leaves -->
+        <path d="M 20 220 C 60 180, 100 130, 150 90 C 180 65, 210 50, 225 35" stroke="#7A8B71" stroke-width="2.5"
+          opacity="0.85" />
+        <path d="M 60 180 C 45 155, 35 125, 45 100 C 55 120, 65 145, 75 165" fill="#5F7057" stroke="#485642"
+          stroke-width="1.5" opacity="0.8" />
+        <path d="M 100 145 C 90 115, 95 85, 120 70 C 120 95, 115 120, 110 137" fill="#697B61" stroke="#485642"
+          stroke-width="1.5" opacity="0.8" />
+        <path d="M 140 100 C 160 85, 180 90, 190 110 C 175 115, 155 112, 142 102" fill="#5F7057" stroke="#485642"
+          stroke-width="1.5" opacity="0.75" />
+        <!-- Calla Lily Bloom 1 -->
+        <path d="M 150 90 C 165 60, 195 40, 220 30 C 210 60, 190 85, 165 95 Z" fill="#FDFBF7" stroke="#E3DCD3"
+          stroke-width="1.5" />
+        <path d="M 180 55 Q 195 45, 205 40" stroke="#C9A45C" stroke-width="3" stroke-linecap="round" />
+        <!-- White Rose / Blossom -->
+        <circle cx="95" cy="130" r="14" fill="#FAF6EE" stroke="#E0D5C1" stroke-width="1.5" />
+        <path d="M 88 128 C 92 122, 100 122, 103 128 C 100 134, 91 133, 88 128 Z" fill="#F4EDE0" stroke="#C9A45C"
+          stroke-width="1" />
+        <circle cx="130" cy="160" r="10" fill="#FAF6EE" stroke="#E0D5C1" stroke-width="1.2" />
+        <!-- Tiny baby's breath buds -->
+        <circle cx="160" cy="50" r="3.5" fill="#FFFFFF" stroke="#C9A45C" stroke-width="0.8" />
+        <circle cx="210" cy="20" r="3" fill="#FFFFFF" stroke="#C9A45C" stroke-width="0.8" />
+        <circle cx="175" cy="30" r="3" fill="#FFFFFF" stroke="#C9A45C" stroke-width="0.8" />
+        <circle cx="70" cy="110" r="3.5" fill="#FFFFFF" stroke="#C9A45C" stroke-width="0.8" />
+      </g>
+    </symbol>
+
+    <!-- Gold Hairline Divider with Center Heart -->
+    <symbol id="gold-divider" viewBox="0 0 400 24">
+      <line x1="10" y1="12" x2="180" y2="12" stroke="#C9A45C" stroke-width="1" opacity="0.7" />
+      <path d="M 200 16 C 196 11, 190 10, 190 5 C 190 1, 195 0, 200 5 C 205 0, 210 1, 210 5 C 210 10, 204 11, 200 16 Z"
+        fill="#C9A45C" />
+      <circle cx="184" cy="12" r="2" fill="#C9A45C" opacity="0.8" />
+      <circle cx="216" cy="12" r="2" fill="#C9A45C" opacity="0.8" />
+      <line x1="220" y1="12" x2="390" y2="12" stroke="#C9A45C" stroke-width="1" opacity="0.7" />
+    </symbol>
+  </svg>
+
+  <!-- ===================================================================
+       0. LOADING SCREEN
+       =================================================================== -->
+  <div id="scene-loader" class="scene-loader">
+    <div class="loader-content">
+      <div class="pulsing-heart" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="54" height="54">
+          <path
+            d="M 32 56 C 24 48, 4 36, 4 20 C 4 9, 13 2, 23 2 C 28 2, 31 5, 32 7 C 33 5, 36 2, 41 2 C 51 2, 60 9, 60 20 C 60 36, 40 48, 32 56 Z"
+            fill="url(#goldGradientLoader)" stroke="#E0C287" stroke-width="1.5" />
+          <defs>
+            <linearGradient id="goldGradientLoader" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E5CA8F" />
+              <stop offset="50%" stop-color="#C9A45C" />
+              <stop offset="100%" stop-color="#9A7736" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <p class="loader-text">Something sweet is coming...</p>
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       AUDIO & FLOATING UTILITY CONTROLS
+       =================================================================== -->
+  <!-- Background Music Element (loads from config.js) -->
+  <audio id="bg-audio" preload="auto" loop></audio>
+
+  <!-- Top Floating Controls -->
+  <header class="top-nav-bar">
+    <div class="nav-branding">
+      <span class="gold-monogram" id="nav-monogram">S & A</span>
+      <span class="nav-date" id="nav-date">November 15</span>
+    </div>
+    <div class="nav-actions">
+      <!-- Music Toggle Button -->
+      <button id="btn-music-toggle" class="nav-btn" aria-label="Toggle background music" title="Play / Mute Music">
+        <svg class="icon-music-playing" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+        </svg>
+        <span class="music-label">Music</span>
+      </button>
+      <!-- Sound FX Toggle Button -->
+      <button id="btn-sfx-toggle" class="nav-btn nav-btn-icon" aria-label="Toggle sound effects" title="Sound Effects">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       CONTINUOUS HEARTS CANVAS (Background layer)
+       =================================================================== -->
+  <canvas id="hearts-canvas" class="hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================================================================
+       1. BALLOONS (Opening Scene)
+       =================================================================== -->
+  <section id="scene-balloons" class="scene-section scene-balloons">
+    <!-- Corner Floral Overlays -->
+    <div class="floral-overlay floral-top-left" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+    <div class="floral-overlay floral-top-right" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+
+    <!-- Scene Heading -->
+    <div class="balloons-header-container">
+      <p class="script-subtitle">A special celebration for</p>
+      <h1 class="main-title" id="balloon-her-name">Sarah</h1>
+      <div class="ornament-divider">
+        <svg>
+          <use href="#gold-divider" />
+        </svg>
+      </div>
+      <p class="instruction-pill">Tap the floating balloons to uncover sweet notes</p>
+
+      <!-- Popped Counter & Advance Prompt -->
+      <div class="balloon-counter-badge" id="balloon-counter-badge">
+        <span id="balloon-counter-text">Balloons Popped: 0</span>
+      </div>
+      <button id="btn-skip-balloons" class="btn-gold-outline" style="margin-top: 10px;">
+        Proceed to Birthday Cake &darr;
+      </button>
+    </div>
+
+    <!-- Sky Canvas / Container for 15-20 Balloons -->
+    <div id="balloons-sky" class="balloons-sky" aria-label="Floating interactive balloons"></div>
+
+    <!-- Pop Message Modal / Toast -->
+    <div id="balloon-note-card" class="balloon-note-card" aria-live="polite">
+      <div class="card-inner">
+        <span class="note-sparkle">&#10024;</span>
+        <p id="balloon-note-text" class="balloon-note-text">You are my favorite person in the entire world.</p>
+        <span class="note-dismiss">Tap anywhere to keep popping</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       2. BLOW OUT THE CANDLES
+       =================================================================== -->
+  <section id="scene-candles" class="scene-section scene-candles">
+    <!-- Floral corner decor -->
+    <div class="floral-overlay floral-bottom-left" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+    <div class="floral-overlay floral-bottom-right" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+
+    <div class="section-inner text-center">
+      <p class="script-subtitle">A Sweet Birthday Wish</p>
+      <h2 class="section-title">Blow Out The Candles</h2>
+      <div class="ornament-divider"><svg>
+          <use href="#gold-divider" />
+        </svg></div>
+
+      <p class="candle-hint" id="candle-hint">
+        Blow gently into your microphone, or tap the button below. Both work!
+      </p>
+
+      <!-- Cake Stage -->
+      <div class="cake-stage" id="cake-stage">
+        <!-- SVG Interactive 3-Tier Cake with Lit Candles -->
+        <div class="cake-container" id="cake-container">
+          <svg id="cake-svg" class="cake-svg" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Cake Frosting Gradients -->
+              <linearGradient id="creamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#EFE2CF" />
+                <stop offset="35%" stop-color="#FBF7EE" />
+                <stop offset="70%" stop-color="#F6EBDD" />
+                <stop offset="100%" stop-color="#E2D0B8" />
+              </linearGradient>
+              <linearGradient id="burgundyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#440D17" />
+                <stop offset="40%" stop-color="#701C2B" />
+                <stop offset="75%" stop-color="#5E1622" />
+                <stop offset="100%" stop-color="#360810" />
+              </linearGradient>
+              <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#9A7736" />
+                <stop offset="50%" stop-color="#F2DE9F" />
+                <stop offset="100%" stop-color="#C9A45C" />
+              </linearGradient>
+              <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFDD78" stop-opacity="0.9" />
+                <stop offset="50%" stop-color="#FF8A3D" stop-opacity="0.5" />
+                <stop offset="100%" stop-color="#FF3B30" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="flameCore" cx="50%" cy="70%" r="60%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="40%" stop-color="#FFE885" />
+                <stop offset="80%" stop-color="#FF6B2B" />
+                <stop offset="100%" stop-color="#E82A1B" />
+              </radialGradient>
+              <!-- Shadow filter -->
+              <filter id="cakeDropShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#140205" flood-opacity="0.6" />
+              </filter>
+            </defs>
+
+            <!-- Porcelain Cake Stand -->
+            <g id="cake-stand" filter="url(#cakeDropShadow)">
+              <ellipse cx="250" cy="385" rx="210" ry="24" fill="#EADBC6" stroke="#C9A45C" stroke-width="2.5" />
+              <ellipse cx="250" cy="382" rx="200" ry="20" fill="#F8F3EA" />
+              <path d="M 220 385 Q 250 405 250 415 Q 250 405 280 385 Z" fill="#D9C7AF" />
+              <ellipse cx="250" cy="415" rx="55" ry="8" fill="#C9A45C" />
+            </g>
+
+            <!-- Cake Tier 1 (Bottom Tier - Burgundy & Gold Trim) -->
+            <g id="tier-bottom">
+              <path d="M 90 300 C 90 300, 90 365, 90 365 C 90 385, 410 385, 410 365 L 410 300 Z"
+                fill="url(#burgundyGradient)" />
+              <ellipse cx="250" cy="300" rx="160" ry="22" fill="#6A1927" stroke="url(#goldTrim)" stroke-width="2" />
+              <!-- Scalloped lace gold piping -->
+              <path d="M 90 365 C 130 380, 210 385, 250 385 C 290 385, 370 380, 410 365" stroke="url(#goldTrim)"
+                stroke-width="3.5" fill="none" />
+              <!-- Piped pearl dots -->
+              <circle cx="130" cy="369" r="3.5" fill="#F8F3EA" />
+              <circle cx="170" cy="375" r="3.5" fill="#F8F3EA" />
+              <circle cx="210" cy="379" r="3.5" fill="#F8F3EA" />
+              <circle cx="250" cy="380" r="4" fill="#F8F3EA" />
+              <circle cx="290" cy="379" r="3.5" fill="#F8F3EA" />
+              <circle cx="330" cy="375" r="3.5" fill="#F8F3EA" />
+              <circle cx="370" cy="369" r="3.5" fill="#F8F3EA" />
+            </g>
+
+            <!-- Cake Tier 2 (Middle Tier - Ivory Cream with Gold & Rose Filigree) -->
+            <g id="tier-middle">
+              <path d="M 135 225 L 135 285 C 135 305, 365 305, 365 285 L 365 225 Z" fill="url(#creamGradient)" />
+              <ellipse cx="250" cy="225" rx="115" ry="18" fill="#FDFBF7" stroke="url(#goldTrim)" stroke-width="2" />
+              <!-- Gold filigree band -->
+              <path d="M 135 285 C 180 300, 320 300, 365 285" stroke="url(#goldTrim)" stroke-width="2.5" fill="none" />
+              <!-- Blush rose blossoms on tier 2 -->
+              <circle cx="150" cy="280" r="7" fill="#E3A4AE" />
+              <circle cx="150" cy="280" r="4" fill="#F6D5DC" />
+              <circle cx="350" cy="280" r="7" fill="#E3A4AE" />
+              <circle cx="350" cy="280" r="4" fill="#F6D5DC" />
+            </g>
+
+            <!-- Cake Tier 3 (Top Tier - Burgundy velvet) -->
+            <g id="tier-top" class="tier-top-group">
+              <path id="top-tier-body" d="M 180 155 L 180 210 C 180 225, 320 225, 320 210 L 320 155 Z"
+                fill="url(#burgundyGradient)" />
+              <ellipse id="top-tier-cap" cx="250" cy="155" rx="70" ry="14" fill="#6A1927" stroke="url(#goldTrim)"
+                stroke-width="2" />
+              <path d="M 180 210 C 210 222, 290 222, 320 210" stroke="url(#goldTrim)" stroke-width="2" fill="none" />
+            </g>
+
+            <!-- 5 Elegant Birthday Candles on Top Tier -->
+            <g id="candles-group">
+              <!-- Candle 1 (Leftmost) -->
+              <g class="candle" data-id="1" transform="translate(198, 110)">
+                <rect x="0" y="18" width="6" height="26" rx="2" fill="#FAF6EE" stroke="#C9A45C" stroke-width="0.8" />
+                <line x1="3" y1="18" x2="3" y2="12" stroke="#4A101A" stroke-width="1.2" />
+                <g class="flame-group">
+                  <ellipse class="flame-glow" cx="3" cy="8" rx="14" ry="18" fill="url(#flameGlow)" />
+                  <path class="flame" d="M 3 0 C 6 4, 8 8, 3 14 C -2 8, 0 4, 3 0 Z" fill="url(#flameCore)" />
+                </g>
+                <path class="smoke-wisp" d="M 3 10 Q 0 4, 5 -4 Q 8 -12, 1 -18" stroke="#E0D5C1" stroke-width="1.5"
+                  fill="none" opacity="0" />
+              </g>
+
+              <!-- Candle 2 -->
+              <g class="candle" data-id="2" transform="translate(224, 102)">
+                <rect x="0" y="18" width="6" height="30" rx="2" fill="#FAF6EE" stroke="#C9A45C" stroke-width="0.8" />
+                <line x1="3" y1="18" x2="3" y2="12" stroke="#4A101A" stroke-width="1.2" />
+                <g class="flame-group">
+                  <ellipse class="flame-glow" cx="3" cy="8" rx="14" ry="18" fill="url(#flameGlow)" />
+                  <path class="flame" d="M 3 0 C 6 4, 8 8, 3 14 C -2 8, 0 4, 3 0 Z" fill="url(#flameCore)" />
+                </g>
+                <path class="smoke-wisp" d="M 3 10 Q 0 4, 5 -4 Q 8 -12, 1 -18" stroke="#E0D5C1" stroke-width="1.5"
+                  fill="none" opacity="0" />
+              </g>
+
+              <!-- Candle 3 (Center) -->
+              <g class="candle" data-id="3" transform="translate(247, 98)">
+                <rect x="0" y="18" width="6" height="34" rx="2" fill="#FAF6EE" stroke="#C9A45C" stroke-width="0.8" />
+                <line x1="3" y1="18" x2="3" y2="12" stroke="#4A101A" stroke-width="1.2" />
+                <g class="flame-group">
+                  <ellipse class="flame-glow" cx="3" cy="8" rx="16" ry="20" fill="url(#flameGlow)" />
+                  <path class="flame" d="M 3 0 C 6 4, 8 8, 3 14 C -2 8, 0 4, 3 0 Z" fill="url(#flameCore)" />
+                </g>
+                <path class="smoke-wisp" d="M 3 10 Q 0 4, 5 -4 Q 8 -12, 1 -18" stroke="#E0D5C1" stroke-width="1.5"
+                  fill="none" opacity="0" />
+              </g>
+
+              <!-- Candle 4 -->
+              <g class="candle" data-id="4" transform="translate(270, 102)">
+                <rect x="0" y="18" width="6" height="30" rx="2" fill="#FAF6EE" stroke="#C9A45C" stroke-width="0.8" />
+                <line x1="3" y1="18" x2="3" y2="12" stroke="#4A101A" stroke-width="1.2" />
+                <g class="flame-group">
+                  <ellipse class="flame-glow" cx="3" cy="8" rx="14" ry="18" fill="url(#flameGlow)" />
+                  <path class="flame" d="M 3 0 C 6 4, 8 8, 3 14 C -2 8, 0 4, 3 0 Z" fill="url(#flameCore)" />
+                </g>
+                <path class="smoke-wisp" d="M 3 10 Q 0 4, 5 -4 Q 8 -12, 1 -18" stroke="#E0D5C1" stroke-width="1.5"
+                  fill="none" opacity="0" />
+              </g>
+
+              <!-- Candle 5 (Rightmost) -->
+              <g class="candle" data-id="5" transform="translate(296, 110)">
+                <rect x="0" y="18" width="6" height="26" rx="2" fill="#FAF6EE" stroke="#C9A45C" stroke-width="0.8" />
+                <line x1="3" y1="18" x2="3" y2="12" stroke="#4A101A" stroke-width="1.2" />
+                <g class="flame-group">
+                  <ellipse class="flame-glow" cx="3" cy="8" rx="14" ry="18" fill="url(#flameGlow)" />
+                  <path class="flame" d="M 3 0 C 6 4, 8 8, 3 14 C -2 8, 0 4, 3 0 Z" fill="url(#flameCore)" />
+                </g>
+                <path class="smoke-wisp" d="M 3 10 Q 0 4, 5 -4 Q 8 -12, 1 -18" stroke="#E0D5C1" stroke-width="1.5"
+                  fill="none" opacity="0" />
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Mic & Tap Action Controls -->
+        <div class="candle-controls">
+          <button id="btn-mic-listen" class="btn-gold-glass" aria-label="Activate microphone to blow candles">
+            <span class="btn-icon">&#127874;</span>
+            <span id="mic-status-label">Blow Into Microphone</span>
+          </button>
+          <button id="btn-tap-blow" class="btn-gold-solid" aria-label="Extinguish all candles at once">
+            Blow Out Candles 💨
+          </button>
+        </div>
+
+        <!-- Wish Reveal Prompt (appears when all candles are out) -->
+        <div id="wish-banner" class="wish-banner">
+          <p class="wish-title script-font">Make a wish, my love...</p>
+          <p class="wish-subtitle">Your wish has been softly whispered to the stars.</p>
+          <button id="btn-goto-cut" class="btn-gold-solid">Cut The Cake &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       3. CUT THE CAKE
+       =================================================================== -->
+  <section id="scene-cut" class="scene-section scene-cut">
+    <div class="section-inner text-center">
+      <p class="script-subtitle">A Moment of Sweetness</p>
+      <h2 class="section-title">Cut The First Slice</h2>
+      <div class="ornament-divider"><svg>
+          <use href="#gold-divider" />
+        </svg></div>
+      <p class="cut-instructions">Tap or drag the golden knife across the cake to cut your slice.</p>
+
+      <!-- Cake Cutting Interactive Arena -->
+      <div class="cut-arena" id="cut-arena">
+        <!-- Golden Knife Draggable / Tappable Object -->
+        <div id="gold-knife" class="gold-knife" title="Tap or drag to cut!">
+          <svg viewBox="0 0 160 50" width="130" height="42">
+            <!-- Knife Blade -->
+            <path d="M 40 25 L 145 15 Q 155 22 145 28 L 40 30 Z" fill="url(#goldBladeGrad)" stroke="#EADBC6"
+              stroke-width="1" />
+            <path d="M 40 28 L 140 27" stroke="#FFFFFF" stroke-width="1" opacity="0.8" />
+            <!-- Knife Bolster & Handle -->
+            <rect x="30" y="20" width="12" height="15" rx="3" fill="#9A7736" />
+            <path d="M 32 21 L 8 20 C 2 20, 0 24, 0 27 C 0 31, 2 34, 8 34 L 32 34 Z" fill="url(#knifeHandleGrad)"
+              stroke="#C9A45C" stroke-width="1" />
+            <circle cx="16" cy="27" r="2" fill="#F2DE9F" />
+            <circle cx="26" cy="27" r="2" fill="#F2DE9F" />
+            <defs>
+              <linearGradient id="goldBladeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#D9BA77" />
+                <stop offset="40%" stop-color="#FFF5D6" />
+                <stop offset="70%" stop-color="#C9A45C" />
+                <stop offset="100%" stop-color="#9A7736" />
+              </linearGradient>
+              <linearGradient id="knifeHandleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#5E1622" />
+                <stop offset="50%" stop-color="#832130" />
+                <stop offset="100%" stop-color="#360810" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="knife-tap-hint">Cut Here</span>
+        </div>
+
+        <!-- Cutting Cake Graphics -->
+        <div class="cut-cake-display" id="cut-cake-display">
+          <!-- The Cake with cuttable slice -->
+          <div class="whole-cake" id="whole-cake">
+            <!-- Cut slice overlay that lifts out -->
+            <div class="cake-slice-lifting" id="cake-slice-lifting">
+              <svg viewBox="0 0 180 140" width="160" height="120">
+                <path d="M 90 20 L 160 80 C 140 100, 40 100, 20 80 Z" fill="#F6EBDD" stroke="#C9A45C"
+                  stroke-width="1.5" />
+                <path d="M 20 80 L 20 110 C 40 130, 140 130, 160 110 L 160 80 Z" fill="#5E1622" stroke="#C9A45C"
+                  stroke-width="1.5" />
+                <ellipse cx="90" cy="25" rx="8" ry="8" fill="#E3A4AE" />
+                <circle cx="90" cy="23" r="3" fill="#FFFFFF" />
+              </svg>
+            </div>
+            <!-- Base cake image representation -->
+            <div class="cake-silhouette">
+              <svg viewBox="0 0 340 220" width="300" height="190">
+                <ellipse cx="170" cy="180" rx="140" ry="24" fill="#1B0408" opacity="0.6" />
+                <!-- Bottom tier -->
+                <path d="M 40 130 C 40 170, 300 170, 300 130 L 300 110 C 300 110, 40 110, 40 110 Z" fill="#5E1622"
+                  stroke="#C9A45C" stroke-width="1.5" />
+                <ellipse cx="170" cy="110" rx="130" ry="18" fill="#F6EBDD" stroke="#C9A45C" stroke-width="1.5" />
+                <!-- Top tier -->
+                <path d="M 85 80 C 85 110, 255 110, 255 80 L 255 60 L 85 60 Z" fill="#5E1622" stroke="#C9A45C"
+                  stroke-width="1.5" />
+                <ellipse cx="170" cy="60" rx="85" ry="14" fill="#F6EBDD" stroke="#C9A45C" stroke-width="1.5" />
+                <!-- Dotted cutting line indicator -->
+                <line id="cut-guide-line" x1="170" y1="46" x2="170" y2="120" stroke="#C9A45C" stroke-width="2.5"
+                  stroke-dasharray="5 4" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Cake Message Card (Revealed after cut) -->
+        <div id="cake-message-card" class="cake-message-card">
+          <div class="card-parchment">
+            <span class="parchment-seal">&#10022;</span>
+            <h3 class="script-card-title">A Sweet Secret For You</h3>
+            <p id="cake-message-text" class="cake-message-text">
+              You make every single day sweeter...
+            </p>
+            <div class="ornament-divider"><svg>
+                <use href="#gold-divider" />
+              </svg></div>
+            <a href="#scene-story" class="btn-gold-solid"
+              style="display:inline-block; margin-top:14px; text-decoration:none;">
+              Walk Through Our Story &darr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       5. OUR STORY IN PICTURES (Photo Timeline & Lightbox)
+       =================================================================== -->
+  <section id="scene-story" class="scene-section scene-story">
+    <div class="section-inner">
+      <div class="text-center story-intro-block">
+        <p class="script-subtitle">Every Chapter With You</p>
+        <h2 class="section-title">Our Story</h2>
+        <div class="ornament-divider"><svg>
+            <use href="#gold-divider" />
+          </svg></div>
+        <p class="section-subtext">A collection of moments that turned into our favorite memories.</p>
+      </div>
+
+      <!-- Story Chapters Container (Populated via config.js) -->
+      <div id="story-chapters-list" class="story-chapters-list">
+        <!-- Rendered dynamically via script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Lightbox Modal (With Swipe & Nav Controls) -->
+  <div id="photo-lightbox" class="photo-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-overlay" id="lightbox-backdrop"></div>
+    <div class="lightbox-dialog">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close photo preview">&times;</button>
+      <button id="lightbox-prev" class="lightbox-nav-btn lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+      <button id="lightbox-next" class="lightbox-nav-btn lightbox-next" aria-label="Next photo">&rsaquo;</button>
+      <div class="lightbox-frame">
+        <img id="lightbox-img" src="" alt="Our Memory Large Preview">
+      </div>
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title" class="lightbox-title">Chapter Title</h3>
+        <span id="lightbox-date" class="lightbox-date">Date</span>
+        <p id="lightbox-desc" class="lightbox-desc">Caption goes here.</p>
+        <span class="lightbox-swipe-hint">Swipe left / right on mobile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       6. LOVE GAMES (4 Interactive Games)
+       =================================================================== -->
+  <section id="scene-games" class="scene-section scene-games">
+    <div class="section-inner">
+      <div class="text-center games-header-block">
+        <p class="script-subtitle">Playful Moments</p>
+        <h2 class="section-title">Love Games</h2>
+        <div class="ornament-divider"><svg>
+            <use href="#gold-divider" />
+          </svg></div>
+
+        <!-- Game Switcher Navigation Pills -->
+        <div class="games-nav-tabs" role="tablist">
+          <button class="game-tab-btn active" data-game="1" role="tab">1. Memory Quiz</button>
+          <button class="game-tab-btn" data-game="3" role="tab">2. Would You Rather</button>
+          <button class="game-tab-btn" data-game="4" role="tab">3. Catch The Hearts</button>
+        </div>
+      </div>
+
+      <!-- Games Deck -->
+      <div class="games-deck">
+        <!-- GAME 1: The Memory Quiz -->
+        <div class="game-card active" id="game-panel-1">
+          <div class="game-card-inner lace-card-frame">
+            <span class="game-badge">Game 1 of 3</span>
+            <h3 class="game-title">Do you remember how our story began?</h3>
+            <p class="game-subtitle">A little walk down memory lane to test your romantic memory.</p>
+
+            <div id="quiz-container" class="quiz-container">
+              <div class="quiz-question-box">
+                <span class="quiz-progress-text" id="quiz-progress-text">Question 1 of 3</span>
+                <h4 class="quiz-question-title" id="quiz-question-title">Where did we first meet eyes?</h4>
+              </div>
+              <div class="quiz-options-grid" id="quiz-options-grid">
+                <!-- Injected via script.js -->
+              </div>
+              <div id="quiz-feedback-box" class="quiz-feedback-box" aria-live="polite"></div>
+            </div>
+
+            <div class="game-footer-actions">
+              <button class="btn-gold-outline btn-next-game" data-next="3">Next Game: Would You Rather &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 2: Would You Rather -->
+        <div class="game-card" id="game-panel-3">
+          <div class="game-card-inner lace-card-frame">
+            <span class="game-badge">Game 2 of 3</span>
+            <h3 class="game-title">Would You Rather?</h3>
+            <p class="game-subtitle">Pick whichever makes your heart flutter faster.</p>
+
+            <div id="wyr-container" class="wyr-container">
+              <span class="wyr-counter" id="wyr-counter">Question 1 of 4</span>
+
+              <div class="wyr-cards-row">
+                <!-- Option A -->
+                <button class="wyr-option-card" id="wyr-btn-a" data-choice="A">
+                  <span class="wyr-pill-label">Option A</span>
+                  <p class="wyr-card-text" id="wyr-text-a">A cozy candlelit picnic under a blanket of stars</p>
+                </button>
+
+                <div class="wyr-versus-circle">or</div>
+
+                <!-- Option B -->
+                <button class="wyr-option-card" id="wyr-btn-b" data-choice="B">
+                  <span class="wyr-pill-label">Option B</span>
+                  <p class="wyr-card-text" id="wyr-text-b">A fancy rooftop dinner in a glowing skyline</p>
+                </button>
+              </div>
+
+              <!-- Romantic Reaction Message -->
+              <div id="wyr-reaction-box" class="wyr-reaction-box">
+                <span class="reaction-heart">&#10084;</span>
+                <p id="wyr-reaction-text" class="wyr-reaction-text"></p>
+                <button id="wyr-btn-next" class="btn-gold-solid" style="margin-top:12px;">Next Dilemma &rarr;</button>
+              </div>
+            </div>
+
+            <div class="game-footer-actions">
+              <button class="btn-gold-outline btn-next-game" data-next="4">Next Game: Catch The Hearts &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME 4: Catch The Hearts -->
+        <div class="game-card" id="game-panel-4">
+          <div class="game-card-inner lace-card-frame text-center">
+            <span class="game-badge">Game 3 of 3</span>
+            <h3 class="game-title">Catch The Hearts</h3>
+            <p class="game-subtitle">Tap as many drifting hearts as you can in 20 seconds!</p>
+
+            <!-- Catch Hearts Arena -->
+            <div class="catch-arena" id="catch-arena">
+              <!-- Score Bar -->
+              <div class="catch-score-bar">
+                <div class="score-pill">Time Left: <span id="catch-timer">20</span>s</div>
+                <div class="score-pill">Hearts Caught: <span id="catch-score">0</span></div>
+              </div>
+
+              <!-- Playfield Area -->
+              <div class="catch-playfield" id="catch-playfield">
+                <div class="catch-start-overlay" id="catch-start-overlay">
+                  <p class="script-subtitle" style="font-size: 1.8rem;">Are you ready?</p>
+                  <button id="btn-start-catch" class="btn-gold-solid">Start Game &#10084;</button>
+                </div>
+              </div>
+
+              <!-- End of Game Summary -->
+              <div id="catch-end-box" class="catch-end-box">
+                <span class="trophy-heart">&#128150;</span>
+                <h4 class="script-card-title">You're Amazing!</h4>
+                <p id="catch-result-text" class="catch-result-text">
+                  You caught my heart from the very first day.
+                </p>
+                <a href="#scene-letter" class="btn-gold-solid"
+                  style="display:inline-block; margin-top:12px; text-decoration:none;">
+                  Open Your Birthday Letter &darr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       7. THE BIRTHDAY LETTER (Interactive Envelope & Deckle-Edge Stationery)
+       =================================================================== -->
+  <section id="scene-letter" class="scene-section scene-letter">
+    <!-- Floral background decoration -->
+    <div class="floral-overlay floral-top-left" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+    <div class="floral-overlay floral-bottom-right" aria-hidden="true">
+      <svg>
+        <use href="#floral-corner" />
+      </svg>
+    </div>
+
+    <div class="section-inner">
+      <div class="text-center letter-heading-block">
+        <p class="script-subtitle">From My Heart To Yours</p>
+        <h2 class="section-title">A Special Letter Just For You</h2>
+        <div class="ornament-divider"><svg>
+            <use href="#gold-divider" />
+          </svg></div>
+      </div>
+
+      <!-- Envelope Presentation Container (Styled after Canva Template row 1 & row 3!) -->
+      <div class="letter-envelope-wrapper" id="envelope-wrapper">
+        <!-- Interactive Envelope -->
+        <div class="envelope-case" id="envelope-case">
+          <!-- Envelope Back Flap -->
+          <div class="envelope-back"></div>
+
+          <!-- Stationery Letter Inside (slides out when opened) -->
+          <article class="letter-stationery deckle-edge-card" id="letter-stationery">
+            <!-- Delicate Floral Sprig in Top-Left Corner (as in reference image) -->
+            <div class="stationery-flower-sprig" aria-hidden="true">
+              <svg viewBox="0 0 120 120" width="80" height="80">
+                <path d="M 10 10 Q 50 30, 80 15" stroke="#7A8B71" stroke-width="2" fill="none" />
+                <circle cx="20" cy="18" r="6" fill="#FAF6EE" stroke="#C9A45C" stroke-width="1" />
+                <circle cx="45" cy="28" r="7" fill="#FAF6EE" stroke="#C9A45C" stroke-width="1" />
+                <circle cx="75" cy="18" r="5" fill="#FAF6EE" stroke="#C9A45C" stroke-width="1" />
+              </svg>
+            </div>
+
+            <!-- Faded Vintage Wax Seal Mark (Watermark) -->
+            <div class="stationery-watermark-seal" aria-hidden="true">
+              <svg viewBox="0 0 100 100" width="100" height="100" opacity="0.12">
+                <circle cx="50" cy="50" r="44" stroke="#C9A45C" stroke-width="2" fill="none" />
+                <circle cx="50" cy="50" r="38" stroke="#C9A45C" stroke-width="1" stroke-dasharray="4 3" fill="none" />
+                <path
+                  d="M 50 68 C 42 60, 26 48, 26 34 C 26 24, 34 18, 43 18 C 47 18, 50 20, 50 22 C 50 20, 53 18, 57 18 C 66 18, 74 24, 74 34 C 74 48, 58 60, 50 68 Z"
+                  fill="#C9A45C" />
+              </svg>
+            </div>
+
+            <!-- Letter Content -->
+            <header class="letter-header">
+              <h3 class="letter-salutation" id="letter-salutation">Dear Anwuu Babyy,</h3>
+            </header>
+
+            <div class="letter-body" id="letter-body">
+              <!-- Paragraphs revealed with smooth handwriting scroll reveal -->
+            </div>
+
+            <footer class="letter-footer">
+              <p class="letter-closing" id="letter-closing">With all my love,</p>
+              <p class="letter-signature script-font" id="letter-signature">Sarvesh</p>
+            </footer>
+          </article>
+
+          <!-- Envelope Front Pocket -->
+          <div class="envelope-front"></div>
+
+          <!-- Envelope Folded Flap with 3D Wax Seal -->
+          <div class="envelope-flap" id="envelope-flap">
+            <!-- Wax Seal Button -->
+            <button class="gold-wax-seal" id="btn-unseal-envelope" aria-label="Open letter envelope"
+              title="Tap to open your letter">
+              <span class="seal-inner">
+                <svg viewBox="0 0 60 60" width="42" height="42">
+                  <circle cx="30" cy="30" r="26" fill="url(#waxGrad)" stroke="#B38B40" stroke-width="1.5" />
+                  <circle cx="30" cy="30" r="22" fill="none" stroke="#F0D99B" stroke-width="0.8"
+                    stroke-dasharray="3 2" />
+                  <!-- Embossed Heart in Center -->
+                  <path
+                    d="M 30 42 C 24 36, 13 28, 13 19 C 13 12, 18 8, 24 8 C 27 8, 29 10, 30 11 C 31 10, 33 8, 36 8 C 42 8, 47 12, 47 19 C 47 28, 36 36, 30 42 Z"
+                    fill="#E8C882" stroke="#876223" stroke-width="0.8" />
+                  <defs>
+                    <linearGradient id="waxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#E5CA8F" />
+                      <stop offset="50%" stop-color="#C9A45C" />
+                      <stop offset="100%" stop-color="#8C6728" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="envelope-tap-prompt" id="envelope-tap-prompt">
+          <button id="btn-open-prompt" class="btn-gold-glass">Tap Gold Wax Seal To Open 💌</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       8. FINAL SECTION (Love Counter & Finale)
+       =================================================================== -->
+  <section id="scene-finale" class="scene-section scene-finale">
+    <div class="section-inner text-center">
+      <!-- Romantic Floral Frame & Photo -->
+      <div class="finale-portrait-wrap">
+        <div class="vintage-oval-frame">
+          <img id="finale-photo" src="assets/photos/finale.jpg" alt="my sweet little bachuuu">
+        </div>
+        <p class="finale-photo-caption script-font" id="finale-photo-caption">my sweet little bachuuu</p>
+      </div>
+
+      <p class="script-subtitle">Always & Forever</p>
+      <h2 class="finale-big-title script-font" id="finale-title">Happy Birthday, my love</h2>
+      <p class="finale-quote" id="finale-quote">"my sweet little bachuuu"</p>
+
+      <div class="ornament-divider"><svg>
+          <use href="#gold-divider" />
+        </svg></div>
+
+      <!-- Live "Together For" Counter -->
+      <div class="together-counter-card">
+        <p class="together-label">Cherishing every single second with you</p>
+        <div class="counter-grid">
+          <div class="counter-col">
+            <span class="counter-num" id="count-days">0</span>
+            <span class="counter-unit">Days</span>
+          </div>
+          <div class="counter-sep">:</div>
+          <div class="counter-col">
+            <span class="counter-num" id="count-hours">00</span>
+            <span class="counter-unit">Hours</span>
+          </div>
+          <div class="counter-sep">:</div>
+          <div class="counter-col">
+            <span class="counter-num" id="count-mins">00</span>
+            <span class="counter-unit">Minutes</span>
+          </div>
+          <div class="counter-sep">:</div>
+          <div class="counter-col">
+            <span class="counter-num" id="count-secs">00</span>
+            <span class="counter-unit">Seconds</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Replay Button -->
+      <div class="finale-actions">
+        <button id="btn-replay" class="btn-gold-outline">
+          <span class="replay-icon">&#8635;</span> Replay Our Journey
+        </button>
+      </div>
+
+      <footer class="site-credit">
+        <p>Crafted with endless love &bull; Happy Birthday, Anwuu Babyy</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Configuration and Main Script -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
